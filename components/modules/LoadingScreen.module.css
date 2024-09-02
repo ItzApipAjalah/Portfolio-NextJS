@@ -1,0 +1,19 @@
+.loadingScreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #111827; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    transition: opacity 1s ease-out, visibility 1s ease-out;
+  }
+  
+  .fadeOut {
+    opacity: 0;
+    visibility: hidden;
+  }
+  
