@@ -3,7 +3,7 @@ import React from 'react';
 import Lottie from 'react-lottie';
 import animationData from '@/public/zignHPeJ5U.json';
 
-const projectAnimation: React.FC = React.memo(() => {
+const ProjectAnimation: React.FC = React.memo(() => {
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -20,4 +20,7 @@ const projectAnimation: React.FC = React.memo(() => {
   );
 });
 
-export default projectAnimation;
+// Set displayName for the component
+ProjectAnimation.displayName = 'ProjectAnimation';
+
+export default ProjectAnimation;
