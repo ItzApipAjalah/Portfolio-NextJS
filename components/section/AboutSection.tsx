@@ -89,7 +89,7 @@ const AboutSection: React.FC = () => {
               className="rounded-full shadow-lg mb-4"
             />
             <p className="text-gray-200 text-lg font-semibold mb-2">
-              {status?.discord_user?.username || 'Unknown User'}
+              {status?.discord_user?.username || 'Unknown User'} ({status?.discord_status || 'Unknown Status'})
             </p>
             {status?.listening_to_spotify && status.spotify ? (
               <div className="relative flex flex-col items-center mb-4 w-full">

@@ -1,9 +1,8 @@
-// components/LottieAnimation.tsx
 import React from 'react';
 import Lottie from 'react-lottie';
-import animationData from '@/public/code.json'; 
+import animationData from '@/public/zignHPeJ5U.json';
 
-const LottieAnimation: React.FC = () => {
+const LottieAnimation: React.FC = React.memo(() => {
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -14,10 +13,10 @@ const LottieAnimation: React.FC = () => {
   };
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center overflow-hidden z-0 opacity-50 pointer-events-none">
+    <div className="absolute inset-0 flex items-center justify-center overflow-hidden z-0 opacity-30 pointer-events-none">
       <Lottie options={defaultOptions} />
     </div>
   );
-};
+});
 
 export default LottieAnimation;

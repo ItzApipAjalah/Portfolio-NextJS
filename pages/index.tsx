@@ -1,5 +1,6 @@
+// pages/index.tsx 
 import React, { useEffect, useState } from 'react';
-import axios from 'axios'; // Import Axios
+import axios from 'axios'; 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Navbar from '@/components/section/Navbar';
@@ -7,9 +8,11 @@ import LottieScrollAnimation from '@/components/animation/NyanCatAnimation';
 import HomeSection from '@/components/section/HomeSection';
 import AboutSection from '@/components/section/AboutSection';
 import ProjectsSection from '@/components/section/ProjectsSection';
+import LottieDivider from '@/components/animation/Divider'; 
 
 const Home: React.FC = () => {
   const [scrollY, setScrollY] = useState(0);
+  const [showAnimation, setShowAnimation] = useState(true);
 
   const handleScroll = () => {
     setScrollY(window.scrollY);
@@ -32,7 +35,7 @@ const Home: React.FC = () => {
         const ipAddress = response.data.ip;
 
         await axios.post('/api/post', {
-          ip_address: ipAddress
+          ip_address: ipAddress,
         });
 
       } catch (error) {
@@ -43,13 +46,23 @@ const Home: React.FC = () => {
     fetchIpAndPost();
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowAnimation(false); 
+      setTimeout(() => setShowAnimation(true), 50); 
+    }, 60000);
+
+    return () => clearInterval(interval); 
+  }, []);
+
   return (
     <>
       <Navbar />
       <HomeSection />
       <AboutSection />
-      <LottieScrollAnimation />
+      <LottieDivider /> 
       <ProjectsSection />
+      
     </>
   );
 };

@@ -1,3 +1,4 @@
+// components/LottieScrollAnimation.tsx
 import React, { useEffect, useState } from 'react';
 import Lottie from 'react-lottie';
 import animationData from '@/public/pembatas.json';
@@ -11,8 +12,8 @@ const LottieScrollAnimation: React.FC = () => {
     autoplay: true,
     animationData: animationData,
     rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice'
-    }
+      preserveAspectRatio: 'xMidYMid slice',
+    },
   };
 
   useEffect(() => {
@@ -23,7 +24,14 @@ const LottieScrollAnimation: React.FC = () => {
     handleResize();
 
     const addAnimation = () => {
-      setAnimations(prevAnimations => [...prevAnimations, Date.now()]);
+      const newAnimationId = Date.now();
+      setAnimations((prevAnimations) => [...prevAnimations, newAnimationId]);
+
+      setTimeout(() => {
+        setAnimations((prevAnimations) =>
+          prevAnimations.filter((id) => id !== newAnimationId)
+        );
+      }, 15000);
     };
 
     addAnimation();
@@ -39,12 +47,9 @@ const LottieScrollAnimation: React.FC = () => {
   }, [intervalDuration]);
 
   return (
-    <div className="relative w-full h-32 ">
-      {animations.map(id => (
-        <div
-          key={id}
-          className="absolute inset-0 w-full h-32"
-        >
+    <div className="relative w-full h-32 pointer-events-none mb-20">
+      {animations.map((id) => (
+        <div key={id} className="absolute inset-0 w-full h-32">
           <div className="absolute inset-0 animate-lottieMove">
             <Lottie options={defaultOptions} height={320} width={320} />
           </div>

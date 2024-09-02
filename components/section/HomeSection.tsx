@@ -12,7 +12,7 @@ const HomeSection: React.FC = () => {
       data-aos="fade-up"
     >
       <LottieAnimation />
-      <div className="relative mt-8 z-10">
+      <div className="relative mt-8 z-10">  
         <Image
           src={profilePicUrl}
           alt="Avatar"
@@ -25,15 +25,13 @@ const HomeSection: React.FC = () => {
         AMWP
       </h1>
       <p className="mt-4 text-center max-w-lg mx-auto text-gray-400 z-10">
-        Hello, my name is Afif Medya Wishnu, I am a 17-year-old student who is currently studying at SMK Taruna Bhakti, specifically in the software and game programming department.
+      Hello! My name is Afif Medya Wishnu Putranto. I am a student with a great interest in technology and software development. I am currently learning various programming languages and frameworks such as Laravel and NextJS. Although I am still in the learning phase, I am enthusiastic about continuously improving my skills.
       </p>
       <div className="mt-6 flex space-x-4 z-10">
         <button className="bg-transparent text-white border-2 border-white px-4 py-2 rounded-full hover:bg-white hover:text-gray-900 transition">
           Explore my work
         </button>
-        <button className="bg-white text-gray-900 px-4 py-2 rounded-full hover:bg-gray-200 transition">
-          LET'S CONNECT
-        </button>
+
       </div>
     </section>
   );

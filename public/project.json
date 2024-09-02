@@ -1,0 +1,54 @@
+{
+    "title": "The projects I'm working on",
+    "projects": [
+      {
+        "year": "2024",
+        "author": "MOHAMMAD RADZY",
+        "projectTitle": "Weather App",
+        "description": [
+          "Real-Time Weather Insights App",
+          "Advanced Weather Application Using Go",
+          "Interactive Weather App Powered by Go"
+        ],
+        "image": "https://portofolio-mozy.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fweather.9d2afb3f.png&w=640&q=75",
+        "link": "#"
+      },
+      {
+        "year": "2023",
+        "author": "MOHAMMAD RADZY",
+        "projectTitle": "E-commerce Platform",
+        "description": [
+          "Comprehensive Online Shopping Experience",
+          "Integrated Payment Gateway",
+          "Scalable Infrastructure with Node.js and MongoDB"
+        ],
+        "image": "https://portofolio-mozy.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fecommerce.9d2afb3f.png&w=640&q=75",
+        "link": "#"
+      },
+      {
+        "year": "2022",
+        "author": "MOHAMMAD RADZY",
+        "projectTitle": "Portfolio Website",
+        "description": [
+          "Showcase of Professional Work",
+          "Responsive Design Using Tailwind CSS",
+          "Dynamic Content Management with React"
+        ],
+        "image": "https://portofolio-mozy.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fportfolio.9d2afb3f.png&w=640&q=75",
+        "link": "#"
+      },
+      {
+        "year": "2021",
+        "author": "MOHAMMAD RADZY",
+        "projectTitle": "Task Management Tool",
+        "description": [
+          "Collaborative Task Management for Teams",
+          "Real-Time Updates with WebSockets",
+          "Customizable Workflows"
+        ],
+        "image": "https://portofolio-mozy.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ftaskmanagement.9d2afb3f.png&w=640&q=75",
+        "link": "#"
+      }
+    ]
+  }
+  
