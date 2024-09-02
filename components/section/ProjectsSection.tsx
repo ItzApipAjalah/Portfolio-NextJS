@@ -146,18 +146,20 @@ const ProjectsSection: React.FC = () => {
             </ul>
             <Link
               href={project.url}
-              className="mt-6 md:mt-8 bg-white text-black px-4 md:px-6 py-2 md:py-3 rounded-md flex items-center text-lg font-semibold z-10"
+              className="mt-6 md:mt-8 w-full md:w-auto bg-white text-black px-4 md:px-6 py-2 md:py-3 rounded-md flex items-center text-lg font-semibold z-10 transition-transform duration-300 ease-in-out transform hover:scale-105 hover:bg-teal-400 hover:text-white hover:shadow-lg"
             >
               View <span className="ml-3 z-10">↗</span>
             </Link>
           </div>
           {/* Right Side: Project Image */}
           <div className="flex-shrink-0 w-full md:w-1/2 z-10">
-            <img
-              src={project.imageUrl}
-              alt={`${project.title} Preview`}
-              className="w-full h-auto rounded-lg"
-            />
+          <Image
+            src={project.imageUrl}
+            alt={`${project.title} Preview`}
+            width={800}
+            height={600}
+            className="rounded-lg"
+          />
           </div>
         </div>
       ))}
