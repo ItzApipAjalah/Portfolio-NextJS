@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import LoadingScreen from '../components/animation/LoadingScreen';
-import '../app/globals.css';
+import LoadingScreen from '@/components/animation/LoadingScreen';
+import '@/app/globals.css';
 
 function MyApp({ Component, pageProps }: any) {
   const [loading, setLoading] = useState(true);
