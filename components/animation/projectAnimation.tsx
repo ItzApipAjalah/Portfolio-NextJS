@@ -1,8 +1,9 @@
+// components/projectAnimation.tsx
 import React from 'react';
 import Lottie from 'react-lottie';
 import animationData from '@/public/zignHPeJ5U.json';
 
-const LottieAnimation: React.FC = React.memo(() => {
+const projectAnimation: React.FC = React.memo(() => {
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -19,4 +20,4 @@ const LottieAnimation: React.FC = React.memo(() => {
   );
 });
 
-export default LottieAnimation;
+export default projectAnimation;

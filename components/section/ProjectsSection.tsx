@@ -3,6 +3,7 @@ import ProjectAnimation from '../animation/projectAnimation';
 import Image from 'next/image';
 import Link from 'next/link';
 import LottieScrollAnimation from '@/components/animation/NyanCatAnimation';
+
 const ProjectsSection: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const projectsPerPage = 1;
@@ -16,7 +17,7 @@ const ProjectsSection: React.FC = () => {
         'blogs and crud products',
         'Comment System',
         'Email System',
-        'Multiple Leanguages',
+        'Multiple Languages', // Corrected typo from 'Multiple Leanguages'
       ],
       imageUrl: '/image/biostark.png',
       url: 'https://biostark-ai.com',
@@ -51,8 +52,8 @@ const ProjectsSection: React.FC = () => {
       year: 'AMWP • 2024',
       description: [
         'Read on the app',
-        'Has an popular and ongoing manhua/manhwa',
-        'little advertising',
+        'Has popular and ongoing manhua/manhwa',
+        'Little advertising', // Corrected typo from 'little advertising'
       ],
       imageUrl: '/image/komikapp.png',
       url: 'https://github.com/ItzApipAjalah/KomikApp',
@@ -63,8 +64,8 @@ const ProjectsSection: React.FC = () => {
       year: 'AMWP • 2024',
       description: [
         'Watch on the app',
-        'Has an ongoing anime',
-        'Has an anime news',
+        'Has ongoing anime',
+        'Has anime news',
         'No Ads',
       ],
       imageUrl: '/image/animeapp.png',
@@ -75,8 +76,8 @@ const ProjectsSection: React.FC = () => {
       title: 'StarLibrary',
       year: 'afif-haykal-adrian • 2024',
       description: [
-        'lending feature',
-        'approval system',
+        'Lending feature',
+        'Approval system',
         'Multiple Roles',
       ],
       imageUrl: '/image/starlibrary.png',
@@ -87,9 +88,9 @@ const ProjectsSection: React.FC = () => {
       title: 'MeNotes',
       year: 'afif-haykal-adrian • 2024',
       description: [
-        'crud system notes',
+        'CRUD system notes',
         'No internet connection',
-        'search feature',
+        'Search feature',
       ],
       imageUrl: '/image/menotes.png',
       url: 'https://notesapp.amwp.website/',
@@ -122,7 +123,7 @@ const ProjectsSection: React.FC = () => {
       <ProjectAnimation />
  
       <div className="text-center text-white mb-8">
-        <h1 className="text-2xl md:text-3xl font-bold" data-aos="fade-right">The project I'm working on</h1>
+        <h1 className="text-2xl md:text-3xl font-bold" data-aos="fade-right">The project I&apos;m working on</h1>
       </div>
       {currentProjects.map((project) => (
         <div
@@ -153,13 +154,13 @@ const ProjectsSection: React.FC = () => {
           </div>
           {/* Right Side: Project Image */}
           <div className="flex-shrink-0 w-full md:w-1/2 z-10">
-          <Image
-            src={project.imageUrl}
-            alt={`${project.title} Preview`}
-            width={800}
-            height={600}
-            className="rounded-lg"
-          />
+            <Image
+              src={project.imageUrl}
+              alt={`${project.title} Preview`}
+              width={800}
+              height={600}
+              className="rounded-lg"
+            />
           </div>
         </div>
       ))}
