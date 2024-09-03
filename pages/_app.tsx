@@ -12,18 +12,22 @@ function MyApp({ Component, pageProps }: AppProps) {
   };
 
   useEffect(() => {
-    // Run AdCash pop-up script after the component mounts
+    // Load AdCash library script asynchronously
     const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.innerHTML = `
-      aclib.runPop({
-        zoneId: '8709442',
-      });
+    script.src = '//acscdn.com/script/aclib.js';
+    script.async = true;
+    script.onload = () => {
+      // Run AdCash scripts after the library has loaded
+      if (window.aclib) {
+        window.aclib.runPop({
+          zoneId: '8709442',
+        });
 
-      aclib.runAutoTag({
-        zoneId: 'dtiihq4n4k',
-    });
-    `;
+        window.aclib.runAutoTag({
+          zoneId: 'dtiihq4n4k',
+        });
+      }
+    };
     document.body.appendChild(script);
   }, []);
 
@@ -42,8 +46,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta property="og:url" content="https://amwp.website" />
         <meta property="og:type" content="website" />
         <title>Portfolio</title>
-        {/* AdCash Library Script */}
-        <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
       </Head>
       {loading && <LoadingScreen onAnimationComplete={handleAnimationComplete} />}
       <div style={{ opacity: loading ? 0 : 1, transition: 'opacity 1s ease-in' }}>
