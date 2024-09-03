@@ -61,8 +61,20 @@ const AboutSection: React.FC = () => {
 
   const profilePicUrl = `https://api.lanyard.rest/${status?.discord_user?.id}.png`;
 
-  const getActivityImageUrl = (applicationId: string, imageId: string) => 
-    `https://cdn.discordapp.com/app-assets/${applicationId}/${imageId}.png`;
+  const getActivityImageUrl = (applicationId: string, imageId: string) => {
+    // Check if the imageId contains "mp:external/" indicating an external URL
+    if (imageId.includes("mp:external/")) {
+      // Extract the URL after the "https/" part
+      const urlMatch = imageId.match(/https\/(.+)/);
+      if (urlMatch && urlMatch[1]) {
+        // Add the "https://" prefix to the extracted URL
+        return `https://${urlMatch[1]}`;
+      }
+    }
+    // If it's not an external URL, construct the URL using applicationId and imageId
+    return `https://cdn.discordapp.com/app-assets/${applicationId}/${imageId}.png`;
+  };
+  
 
   const formatTime = (seconds: number) => {
     const hours = Math.floor(seconds / 3600);

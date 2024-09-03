@@ -11,6 +11,7 @@ declare global {
       runPop: (options: { zoneId: string }) => void;
       runAutoTag: (options: { zoneId: string }) => void;
       runInPagePush: (options: { zoneId: string; refreshRate: number; maxAds: number }) => void;
+      runInterstitial: (options: { zoneId: string }) => void;
     };
   }
 }
@@ -42,6 +43,10 @@ function MyApp({ Component, pageProps }: AppProps) {
           zoneId: '8709450',
           refreshRate: 30,
           maxAds: 2,
+        });
+
+        window.aclib.runInterstitial({
+          zoneId: '8709786',
         });
       }
     };
