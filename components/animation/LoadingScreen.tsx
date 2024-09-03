@@ -25,7 +25,7 @@ const LoadingScreen: React.FC<{ onAnimationComplete: () => void }> = ({ onAnimat
   };
 
   return (
-    <div className={`${styles.loadingScreen} ${fadeOut ? styles.fadeOut : ''}`}>
+    <div className={`pointer-events-none ${styles.loadingScreen} ${fadeOut ? styles.fadeOut : ''}`}>
       <Lottie options={defaultOptions} height={400} width={400} />
     </div>
   );

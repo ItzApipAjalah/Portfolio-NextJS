@@ -14,7 +14,7 @@ const AboutAnimation: React.FC = () => {
   };
 
   return (
-    <div className="absolute bottom-0 right-0 m-4 flex items-end justify-end z-0 opacity-50">
+    <div className="absolute bottom-0 right-0 m-4 flex items-end justify-end z-0 opacity-50 pointer-events-none">
       <Lottie options={defaultOptions} width={500} height={500} />
     </div>
   );
