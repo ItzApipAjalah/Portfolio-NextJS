@@ -4,6 +4,16 @@ import '@/app/globals.css';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
 
+// Extend the Window interface to include aclib
+declare global {
+  interface Window {
+    aclib?: {
+      runPop: (options: { zoneId: string }) => void;
+      runAutoTag: (options: { zoneId: string }) => void;
+    };
+  }
+}
+
 function MyApp({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(true);
 
