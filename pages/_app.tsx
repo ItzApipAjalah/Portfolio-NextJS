@@ -10,6 +10,7 @@ declare global {
     aclib?: {
       runPop: (options: { zoneId: string }) => void;
       runAutoTag: (options: { zoneId: string }) => void;
+      runInPagePush: (options: { zoneId: string; refreshRate: number; maxAds: number }) => void;
     };
   }
 }
@@ -35,6 +36,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 
         window.aclib.runAutoTag({
           zoneId: 'dtiihq4n4k',
+        });
+
+        window.aclib.runInPagePush({
+          zoneId: '8709450',
+          refreshRate: 30,
+          maxAds: 2,
         });
       }
     };
