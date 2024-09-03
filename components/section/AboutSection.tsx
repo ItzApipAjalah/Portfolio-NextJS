@@ -9,12 +9,15 @@ const AboutSection: React.FC = () => {
     userId: '481734993622728715',
     socket: true,
   });
-  
+
   const [elapsedTime, setElapsedTime] = useState<number | null>(null);
   const [visitorData, setVisitorData] = useState<{ count: number | null; countries: { country: string; percentage: number; total: number }[] } | null>(null);
-  const [showAll, setShowAll] = useState<boolean>(false);
+  const [wakatimeData, setWakatimeData] = useState<any>(null);  
+  const [showAllWakatime, setShowAllWakatime] = useState<boolean>(false);
+  const [showAllVisitor, setShowAllVisitor] = useState<boolean>(false);
   const sortedCountries = (visitorData?.countries || []).sort((a, b) => b.percentage - a.percentage);
 
+  // Fetch visitor data
   useEffect(() => {
     axios.get('/api/visitor')
       .then(response => {
@@ -26,6 +29,18 @@ const AboutSection: React.FC = () => {
       });
   }, []);
 
+  // Fetch Wakatime data
+  useEffect(() => {
+    axios.get('/api/wakatime')
+      .then(response => {
+        setWakatimeData(response.data.data);
+      })
+      .catch(error => {
+        console.error('Error fetching Wakatime data:', error);
+      });
+  }, []);
+
+  // Handle elapsed time calculation for activities
   useEffect(() => {
     if (status?.activities?.length) {
       const activity = status.activities[0];
@@ -79,6 +94,7 @@ const AboutSection: React.FC = () => {
       <AboutAnimation />
       <div className="relative z-10 flex flex-col items-center justify-center text-center p-8 w-full mx-4 sm:mx-6 lg:mx-8">
         <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-100">Is this about?</h1>
+        
         <div className={`bg-gray-800 bg-opacity-60 p-6 rounded-lg border ${borderColor()} shadow-md w-full max-w-3xl flex flex-col items-center mb-8`}>
           <div className="flex flex-col items-center w-full">
             <Image
@@ -91,6 +107,7 @@ const AboutSection: React.FC = () => {
             <p className="text-gray-200 text-lg font-semibold mb-2">
               {status?.discord_user?.username || 'Unknown User'} ({status?.discord_status || 'Unknown Status'})
             </p>
+            {/* Display Spotify activity or other activities */}
             {status?.listening_to_spotify && status.spotify ? (
               <div className="relative flex flex-col items-center mb-4 w-full">
                 <div className="relative mb-4">
@@ -157,37 +174,44 @@ const AboutSection: React.FC = () => {
             )}
           </div>
         </div>
-        <div className="bg-gray-800 bg-opacity-60 p-6 rounded-lg border border-gray-700 shadow-md w-full max-w-3xl flex flex-col items-center" data-aos="fade-right">
-              <h2 className="text-3xl font-bold text-gray-200 mb-4">
-                Visitor Count: {visitorData?.count || 0}
-              </h2>
-              <div className="flex flex-col items-center w-full space-y-4">
-                {sortedCountries.slice(0, showAll ? sortedCountries.length : 5).map((country, index) => (
-                  <div
-                    key={index}
-                    className={`flex flex-col items-center w-full transition-transform duration-300 ease-in-out ${
-                      showAll ? 'opacity-100' : 'opacity-100'
-                    }`}
-                  >
-                    <p className="text-gray-200 text-lg font-semibold">{country.country}</p>
-                    <div className="w-full bg-gray-700 rounded-full h-4">
-                      <div
-                        className="bg-green-500 h-4 rounded-full"
-                        style={{ width: `${country.percentage}%` }}
-                      ></div>
-                    </div>
-                    <p className="text-gray-400 text-sm">{country.percentage}%</p>
+
+        {/* Wakatime Stats */}
+        {wakatimeData && (
+          <div className="bg-gray-800 bg-opacity-60 p-6 rounded-lg border border-gray-700 shadow-md w-full max-w-3xl flex flex-col items-center mb-8" data-aos="fade-right">
+            <h2 className="text-3xl font-bold text-gray-200 mb-4">
+              Wakatime Stats
+            </h2>
+            <p className="text-gray-200 text-lg mb-2">
+              Total Coding Time: {wakatimeData.human_readable_total}
+            </p>
+            <p className="text-gray-400 text-sm mb-4">
+              Daily Average: {wakatimeData.human_readable_daily_average}
+            </p>
+            <div className="flex flex-col items-start w-full space-y-4">
+              {wakatimeData.languages.slice(0, showAllWakatime ? wakatimeData.languages.length : 5).map((language: any, index: number) => (
+                <div key={index} className="w-full">
+                  <p className="text-gray-200 font-semibold">{language.name}</p>
+                  <div className="w-full bg-gray-700 rounded-full h-4">
+                    <div
+                      className="bg-blue-500 h-4 rounded-full"
+                      style={{ width: `${language.percent}%` }}
+                    ></div>
                   </div>
-                ))}
-                {sortedCountries.length > 5 && (
-                  <button
-                    onClick={() => setShowAll(!showAll)}
+                  <p className="text-gray-400 text-sm">
+                    {language.text} ({language.percent}%)
+                  </p>
+                </div>
+              ))}
+            </div>
+            {wakatimeData.languages.length > 5 && (
+              <button
+                    onClick={() => setShowAllWakatime(!showAllWakatime)}
                     className="mt-4 text-blue-500 hover:text-blue-600 transition duration-300 ease-in-out transform hover:scale-105 flex items-center"
                   >
-                    <span className="mr-2">{showAll ? 'Show Less' : 'Show More'}</span>
+                    <span className="mr-2">{showAllWakatime ? 'Show Less' : 'Show More'}</span>
                     <svg
                       className={`w-5 h-5 transition-transform duration-300 ease-in-out ${
-                        showAll ? 'rotate-180' : ''
+                        showAllWakatime ? 'rotate-180' : ''
                       }`}
                       fill="none"
                       stroke="currentColor"
@@ -197,9 +221,56 @@ const AboutSection: React.FC = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                   </button>
-                )}
-              </div>
+            )}
+          </div>
+        )}
+
+        {/* Visitor Stats */}
+        {visitorData && (
+          <div className="bg-gray-800 bg-opacity-60 p-6 rounded-lg border border-gray-700 shadow-md w-full max-w-3xl flex flex-col items-center mb-8" data-aos="fade-left">
+            <h2 className="text-3xl font-bold text-gray-200 mb-4">
+              Visitor Stats
+            </h2>
+            <p className="text-gray-200 text-lg mb-2">
+              Total Visitors: {visitorData.count}
+            </p>
+            <div className="flex flex-col items-start w-full space-y-4">
+              {sortedCountries.slice(0, showAllVisitor ? sortedCountries.length : 5).map((country, index) => (
+                <div key={index} className="w-full">
+                  <p className="text-gray-200 font-semibold">{country.country}</p>
+                  <div className="w-full bg-gray-700 rounded-full h-4">
+                    <div
+                      className="bg-green-500 h-4 rounded-full"
+                      style={{ width: `${country.percentage}%` }}
+                    ></div>
+                  </div>
+                  <p className="text-gray-400 text-sm">
+                    {country.total} ({country.percentage}%)
+                  </p>
+                </div>
+              ))}
             </div>
+            {sortedCountries.length > 5 && (
+                  <button
+                    onClick={() => setShowAllVisitor(!showAllVisitor)}
+                    className="mt-4 text-blue-500 hover:text-blue-600 transition duration-300 ease-in-out transform hover:scale-105 flex items-center"
+                  >
+                    <span className="mr-2">{showAllVisitor ? 'Show Less' : 'Show More'}</span>
+                    <svg
+                      className={`w-5 h-5 transition-transform duration-300 ease-in-out ${
+                        showAllVisitor ? 'rotate-180' : ''
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </button>
+            )}
+          </div>
+        )}
       </div>
     </section>
   );

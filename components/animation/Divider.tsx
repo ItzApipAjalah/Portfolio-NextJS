@@ -14,7 +14,7 @@ const LottieDivider: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center pointer-events-none">
       <div className="flex w-full overflow-hidden">
         {Array.from({ length: 10 }).map((_, index) => (
           <div key={index} className="flex-none">
