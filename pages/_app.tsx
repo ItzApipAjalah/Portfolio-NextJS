@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           property="og:description"
           content="my new portoflio using nextjs."
         />
-        <meta property="og:image" content="https://i.ibb.co/Ht9qGK0/logo.png" />
+        <meta property="og:image" content="/image/logo.png" />
         <meta property="og:url" content="https://amwp.website" />
         <meta property="og:type" content="website" />
         <title>Portofolio</title>
