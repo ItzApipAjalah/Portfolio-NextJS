@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import LoadingScreen from '@/components/animation/LoadingScreen';
 import '@/app/globals.css';
 import Head from 'next/head';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { AppProps } from 'next/app';
 
 // Extend the Window interface to include aclib
@@ -64,6 +65,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta property="og:type" content="website" />
         <title>Portfolio</title>
       </Head>
+      <SpeedInsights/>
       {loading && <LoadingScreen onAnimationComplete={handleAnimationComplete} />}
       <div style={{ opacity: loading ? 0 : 1, transition: 'opacity 1s ease-in' }}>
         <Component {...pageProps} />
