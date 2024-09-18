@@ -8,11 +8,14 @@ import LottieScrollAnimation from '@/components/animation/NyanCatAnimation';
 import HomeSection from '@/components/section/HomeSection';
 import AboutSection from '@/components/section/AboutSection';
 import ProjectsSection from '@/components/section/ProjectsSection';
-import LottieDivider from '@/components/animation/Divider'; 
+import LottieDivider from '@/components/animation/Divider';
+import ChatIcon from '@/components/chat/ChatIcon';
+import ChatPopup from '@/components/chat/ChatPopup';
 
 const Home: React.FC = () => {
   const [scrollY, setScrollY] = useState(0);
   const [showAnimation, setShowAnimation] = useState(true);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   const handleScroll = () => {
     setScrollY(window.scrollY);
@@ -55,6 +58,10 @@ const Home: React.FC = () => {
     return () => clearInterval(interval); 
   }, []);
 
+  const toggleChat = () => {
+    setIsChatOpen(!isChatOpen);
+  };
+
   return (
     <>
       <Navbar />
@@ -63,6 +70,8 @@ const Home: React.FC = () => {
       <LottieDivider /> 
       <ProjectsSection />
       
+      <ChatIcon onClick={toggleChat} />
+      {isChatOpen && <ChatPopup onClose={toggleChat} />}
     </>
   );
 };

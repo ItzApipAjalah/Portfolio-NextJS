@@ -108,118 +108,154 @@ const AboutSection: React.FC = () => {
         <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-100">Is this about?</h1>
         
         <div className={`bg-gray-800 bg-opacity-60 p-6 rounded-lg border ${borderColor()} shadow-md w-full max-w-3xl flex flex-col items-center mb-8`}>
-  <div className="flex flex-col items-center w-full">
-    <Image
-      src={profilePicUrl}
-      alt="Profile Picture"
-      width={100}
-      height={100}
-      className="rounded-full shadow-lg mb-4"
-    />
-    <div className="flex items-center mb-2">
-      {/* Display Username and Status */}
-      <p className="text-gray-200 text-lg font-semibold mr-2">
-        {status?.discord_user?.username || 'Unknown User'}
-      </p>
+          <div className="flex flex-col items-center w-full">
+            <Image
+              src={profilePicUrl}
+              alt="Profile Picture"
+              width={100}
+              height={100}
+              className="rounded-full shadow-lg mb-4"
+            />
+            <div className="flex items-center mb-2">
+              {/* Display Username and Status */}
+              <p className="text-gray-200 text-lg font-semibold mr-2">
+                {status?.discord_user?.username || 'Unknown User'}
+              </p>
 
-      {/* Display Badges */}
-      <div className="flex pointer-events-none">
-        <Image
-          src="https://cdn.discordapp.com/badge-icons/6bdc42827a38498929a4920da12695d9.png"
-          alt="Badge 1"
-          width={24}
-          height={24}
-          className="rounded-md"
-        />
-        <Image
-          src="https://cdn.discordapp.com/badge-icons/2ba85e8026a8614b640c2837bcdfe21b.png"
-          alt="Badge 2"
-          width={24}
-          height={24}
-          className="rounded-md"
-        />
-        <Image
-          src="https://cdn.discordapp.com/badge-icons/72bed924410c304dbe3d00a6e593ff59.png"
-          alt="Badge 3"
-          width={24}
-          height={24}
-          className="rounded-md"
-        />
-        <Image
-          src="https://cdn.discordapp.com/badge-icons/7d9ae358c8c5e118768335dbe68b4fb8.png"
-          alt="Badge 4"
-          width={24}
-          height={24}
-          className="rounded-md"
-        />
-      </div>
-    </div>
-
-    {/* Display Spotify activity or other activities */}
-    {status?.listening_to_spotify && status.spotify ? (
-      <div className="relative flex flex-col items-center mb-4 w-full">
-        <div className="relative mb-4">
-          <Image
-            src={status.spotify.album_art_url}
-            alt="Spotify Album Art"
-            width={128}
-            height={128}
-            className="rounded-md"
-          />
-        </div>
-        <div className="text-gray-200 text-center">
-          <p className="font-semibold">{status.spotify.song}</p>
-          <p>{status.spotify.artist}</p>
-          <p className="text-gray-400 text-sm">
-            Elapsed Time: {formatTime(elapsedTime || 0)}
-          </p>
-        </div>
-      </div>
-    ) : status?.activities && status.activities.length > 0 ? (
-      status.activities.map((activity, index) => (
-        <div key={index} className="relative flex flex-col items-center mb-4 w-full">
-          {activity.application_id && activity.assets?.large_image && (
-            <div className="relative mb-4 group">
-              <Image
-                src={getActivityImageUrl(activity.application_id, activity.assets.large_image)}
-                alt="Large Activity Image"
-                width={128}
-                height={128}
-                className="rounded-md"
-              />
-              <div className="absolute inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-md">
-                <p className="text-gray-200 text-sm">
-                  {activity.assets.large_text || 'No large text'}
-                </p>
-              </div>
-              {activity.assets.small_image && (
-                <div className="absolute bottom-0 right-0 transform translate-x-1/2 translate-y-1/2">
+              {/* Display Badges */}
+              <div className="flex space-x-2">
+                <div className="relative group">
                   <Image
-                    src={getActivityImageUrl(activity.application_id, activity.assets.small_image)}
-                    alt="Small Activity Image"
-                    width={32}
-                    height={32}
+                    src="https://cdn.discordapp.com/badge-icons/6bdc42827a38498929a4920da12695d9.png"
+                    alt="Badge 1"
+                    width={24}
+                    height={24}
+                    className="rounded-md"
+                  />
+                  <div className="absolute bottom-0 flex flex-col items-center hidden mb-6 group-hover:flex">
+                    <span className="relative z-10 p-2 text-xs leading-none text-gray-200 whitespace-no-wrap bg-gray-700 shadow-lg rounded-md">
+                      Server boosting since Apr 24, 2024
+                    </span>
+                    <div className="w-3 h-3 -mt-2 rotate-45 bg-gray-700"></div>
+                  </div>
+                </div>
+
+                <div className="relative group">
+                  <Image
+                    src="https://cdn.discordapp.com/badge-icons/2ba85e8026a8614b640c2837bcdfe21b.png"
+                    alt="Badge 2"
+                    width={24}
+                    height={24}
+                    className="rounded-md"
+                  />
+                  <div className="absolute bottom-0 flex flex-col items-center hidden mb-6 group-hover:flex">
+                    <span className="relative z-10 p-2 text-xs leading-none text-gray-200 whitespace-no-wrap bg-gray-700 shadow-lg rounded-md">
+                      Badge 2 description
+                    </span>
+                    <div className="w-3 h-3 -mt-2 rotate-45 bg-gray-700"></div>
+                  </div>
+                </div>
+
+                <div className="relative group">
+                  <Image
+                    src="https://cdn.discordapp.com/badge-icons/72bed924410c304dbe3d00a6e593ff59.png"
+                    alt="Badge 3"
+                    width={24}
+                    height={24}
+                    className="rounded-md"
+                  />
+                  <div className="absolute bottom-0 flex flex-col items-center hidden mb-6 group-hover:flex">
+                    <span className="relative z-10 p-2 text-xs leading-none text-gray-200 whitespace-no-wrap bg-gray-700 shadow-lg rounded-md">
+                      Badge 3 description
+                    </span>
+                    <div className="w-3 h-3 -mt-2 rotate-45 bg-gray-700"></div>
+                  </div>
+                </div>
+
+                <div className="relative group">
+                  <Image
+                    src="https://cdn.discordapp.com/badge-icons/7d9ae358c8c5e118768335dbe68b4fb8.png"
+                    alt="Badge 4"
+                    width={24}
+                    height={24}
+                    className="rounded-md"
+                  />
+                  <div className="absolute bottom-0 flex flex-col items-center hidden mb-6 group-hover:flex">
+                    <span className="relative z-10 p-2 text-xs leading-none text-gray-200 whitespace-no-wrap bg-gray-700 shadow-lg rounded-md">
+                      Badge 4 description
+                    </span>
+                    <div className="w-3 h-3 -mt-2 rotate-45 bg-gray-700"></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Display Spotify activity or other activities */}
+            {status?.listening_to_spotify && status.spotify ? (
+              <div className="relative flex flex-col items-center mb-4 w-full">
+                <div className="relative mb-4">
+                  <Image
+                    src={status.spotify.album_art_url}
+                    alt="Spotify Album Art"
+                    width={128}
+                    height={128}
                     className="rounded-md"
                   />
                 </div>
-              )}
-            </div>
-          )}
-          <div className="text-gray-200 text-center">
-            <p className="font-semibold">{activity.name}</p>
-            <p>{activity.state}</p>
-            <p>{activity.details}</p>
-            <p className="text-gray-400 text-sm">
-              Elapsed Time: {formatTime(elapsedTime || 0)}
-            </p>
+                <div className="text-gray-200 text-center">
+                  <p className="font-semibold">{status.spotify.song}</p>
+                  <p>{status.spotify.artist}</p>
+                  <p className="text-gray-400 text-sm">
+                    Elapsed Time: {formatTime(elapsedTime || 0)}
+                  </p>
+                </div>
+              </div>
+            ) : status?.activities && status.activities.length > 0 ? (
+              status.activities.map((activity, index) => (
+                <div key={index} className="relative flex flex-col items-center mb-4 w-full">
+                  {activity.application_id && activity.assets?.large_image && (
+                    <div className="relative mb-4 group">
+                      <Image
+                        src={getActivityImageUrl(activity.application_id, activity.assets.large_image)}
+                        alt="Large Activity Image"
+                        width={128}
+                        height={128}
+                        className="rounded-md"
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-md">
+                        <p className="text-gray-200 text-sm">
+                          {activity.assets.large_text || 'No large text'}
+                        </p>
+                      </div>
+                      {activity.assets.small_image && (
+                        <div className="absolute bottom-0 right-0 transform translate-x-1/2 translate-y-1/2">
+                          <Image
+                            src={getActivityImageUrl(activity.application_id, activity.assets.small_image)}
+                            alt="Small Activity Image"
+                            width={32}
+                            height={32}
+                            className="rounded-md"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  <div className="text-gray-200 text-center">
+                    <p className="font-semibold">{activity.name}</p>
+                    <p>{activity.state}</p>
+                    <p>{activity.details}</p>
+                    <p className="text-gray-400 text-sm">
+                      Elapsed Time: {formatTime(elapsedTime || 0)}
+                    </p>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p className="text-gray-200">No activity</p>
+            )}
           </div>
         </div>
-      ))
-    ) : (
-      <p className="text-gray-200">No activity</p>
-    )}
-  </div>
-</div>
 
 
         {/* Wakatime Stats */}
