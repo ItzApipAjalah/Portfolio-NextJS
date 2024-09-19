@@ -132,9 +132,9 @@ const AboutSection: React.FC = () => {
                     height={24}
                     className="rounded-md"
                   />
-                  <div className="absolute bottom-0 flex flex-col items-center hidden mb-6 group-hover:flex">
+                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex flex-col items-center hidden mb-6 group-hover:flex">
                     <span className="relative z-10 p-2 text-xs leading-none text-gray-200 whitespace-no-wrap bg-gray-700 shadow-lg rounded-md">
-                      Server boosting since Apr 24, 2024
+                     Active Developer
                     </span>
                     <div className="w-3 h-3 -mt-2 rotate-45 bg-gray-700"></div>
                   </div>
@@ -148,9 +148,9 @@ const AboutSection: React.FC = () => {
                     height={24}
                     className="rounded-md"
                   />
-                  <div className="absolute bottom-0 flex flex-col items-center hidden mb-6 group-hover:flex">
+                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex flex-col items-center hidden mb-6 group-hover:flex">
                     <span className="relative z-10 p-2 text-xs leading-none text-gray-200 whitespace-no-wrap bg-gray-700 shadow-lg rounded-md">
-                      Badge 2 description
+                    Subscriber since Apr 24, 2024
                     </span>
                     <div className="w-3 h-3 -mt-2 rotate-45 bg-gray-700"></div>
                   </div>
@@ -164,29 +164,15 @@ const AboutSection: React.FC = () => {
                     height={24}
                     className="rounded-md"
                   />
-                  <div className="absolute bottom-0 flex flex-col items-center hidden mb-6 group-hover:flex">
+                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex flex-col items-center hidden mb-6 group-hover:flex">
                     <span className="relative z-10 p-2 text-xs leading-none text-gray-200 whitespace-no-wrap bg-gray-700 shadow-lg rounded-md">
-                      Badge 3 description
+                    Server boosting since Apr 24, 2024
                     </span>
                     <div className="w-3 h-3 -mt-2 rotate-45 bg-gray-700"></div>
                   </div>
                 </div>
 
-                <div className="relative group">
-                  <Image
-                    src="https://cdn.discordapp.com/badge-icons/7d9ae358c8c5e118768335dbe68b4fb8.png"
-                    alt="Badge 4"
-                    width={24}
-                    height={24}
-                    className="rounded-md"
-                  />
-                  <div className="absolute bottom-0 flex flex-col items-center hidden mb-6 group-hover:flex">
-                    <span className="relative z-10 p-2 text-xs leading-none text-gray-200 whitespace-no-wrap bg-gray-700 shadow-lg rounded-md">
-                      Badge 4 description
-                    </span>
-                    <div className="w-3 h-3 -mt-2 rotate-45 bg-gray-700"></div>
-                  </div>
-                </div>
+                
               </div>
 
             </div>
