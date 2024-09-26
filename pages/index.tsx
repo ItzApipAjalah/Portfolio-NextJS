@@ -11,11 +11,15 @@ import ProjectsSection from '@/components/section/ProjectsSection';
 import LottieDivider from '@/components/animation/Divider';
 import ChatIcon from '@/components/chat/ChatIcon';
 import ChatPopup from '@/components/chat/ChatPopup';
+import LoadingScreen from '@/components/animation/LoadingScreen';
+import NewYearCountdown from '@/components/NewYearCountdown';
 
 const Home: React.FC = () => {
   const [scrollY, setScrollY] = useState(0);
   const [showAnimation, setShowAnimation] = useState(true);
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [showCountdown, setShowCountdown] = useState(false);
 
   const handleScroll = () => {
     setScrollY(window.scrollY);
@@ -31,23 +35,7 @@ const Home: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    const fetchIpAndPost = async () => {
-      try {
-        const response = await axios.get('https://api.ipify.org?format=json');
-        const ipAddress = response.data.ip;
-
-        await axios.post('/api/post', {
-          ip_address: ipAddress,
-        });
-
-      } catch (error) {
-        console.error('Error fetching IP address or posting it:', error);
-      }
-    };
-
-    fetchIpAndPost();
-  }, []);
+  // Remove the fetchIpAndPost useEffect
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -62,6 +50,19 @@ const Home: React.FC = () => {
     setIsChatOpen(!isChatOpen);
   };
 
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+    setShowCountdown(true);
+  };
+
+  const handleCloseCountdown = () => {
+    setShowCountdown(false);
+  };
+
+  if (isLoading) {
+    return <LoadingScreen onAnimationComplete={handleLoadingComplete} />;
+  }
+
   return (
     <>
       <Navbar />
@@ -72,6 +73,7 @@ const Home: React.FC = () => {
       
       <ChatIcon onClick={toggleChat} />
       {isChatOpen && <ChatPopup onClose={toggleChat} />}
+      {showCountdown && <NewYearCountdown onClose={handleCloseCountdown} />}
     </>
   );
 };
